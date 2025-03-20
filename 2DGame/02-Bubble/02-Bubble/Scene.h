@@ -22,6 +22,7 @@ public:
 	void init();
 	void update(int deltaTime);
 	void render();
+	void configCam();
 
 private:
 	void initShaders();
@@ -32,6 +33,12 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
+
+	Texture fondo;
+	Sprite* liveFondo;
+
+	float camPosX, camPosY, tileSize;
+	float projX, projY;
 
 };
 

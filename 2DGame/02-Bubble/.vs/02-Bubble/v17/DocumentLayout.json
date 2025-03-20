@@ -1,12 +1,119 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\2D-Game\\2DGame\\02-Bubble\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5BE6CA2A-E5A8-40CC-9015-047CE0C78036}|02-Bubble\\02-Bubble.vcxproj|solutionrelative:02-Bubble\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Game.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Game.h",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Game.h",
+              "RelativeToolTip": "02-Bubble\\Game.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-13T11:41:24.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Player.h",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Player.h",
+              "RelativeToolTip": "02-Bubble\\Player.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-13T10:03:00.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Scene.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
+              "RelativeDocumentMoniker": "02-Bubble\\Scene.h",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.h",
+              "RelativeToolTip": "02-Bubble\\Scene.h",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-12T20:40:41.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Scene.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\Scene.cpp",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\Scene.cpp",
+              "RelativeToolTip": "02-Bubble\\Scene.cpp",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAAHcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-12T20:40:25.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TileMap.h",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "RelativeDocumentMoniker": "02-Bubble\\TileMap.h",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.h",
+              "RelativeToolTip": "02-Bubble\\TileMap.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-12T20:40:36.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TileMap.cpp",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "RelativeDocumentMoniker": "02-Bubble\\TileMap.cpp",
+              "ToolTip": "C:\\Users\\Usuario\\Documents\\Universitat\\Any3\\Q2\\VJ\\VJ-GAME\\2DGame\\02-Bubble\\02-Bubble\\TileMap.cpp",
+              "RelativeToolTip": "02-Bubble\\TileMap.cpp",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAAANAAAACzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-12T20:40:21.327Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
