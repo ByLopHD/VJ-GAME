@@ -65,6 +65,8 @@ void Scene::update(int deltaTime)
 	configCam();
 }
 
+/*
+
 void Scene::configCam() {
 	glm::vec2 pos = player->getPosition();
 	float aspectR = float(SCREEN_WIDTH) / float(SCREEN_HEIGHT);
@@ -117,9 +119,9 @@ void Scene::configCam() {
 	//projection = glm::ortho(pos.y + tileSize - viewH / 2.0f, pos.y + tileSize + viewH / 2.0f, camPosX + projX / 2.0f, camPosX - projX / 2.0f);
 	currentTime = 0.0f;
 }
+*/
 
 
-/*
 void Scene::configCam() {
 	glm::vec2 pos = player->getPosition();
 	float aspectR = float(SCREEN_WIDTH) / float(SCREEN_HEIGHT);
@@ -127,51 +129,60 @@ void Scene::configCam() {
 	float viewH = projY;
 	//float viewH = projY * aspectR;
 
-	if (pos.x + tileSize < 9 * tileSize) {
-		int posAct = camPosX;
-		camPosX = (7 +3.5) * tileSize;
-		//projection = glm::ortho(camPosX - viewW / 2.0f, camPosX + viewW / 2.0f, camPosY + projY / 2.0f, camPosY - projY / 2.0f);
-
-		projection = glm::ortho(camPosX - (projY / 2), camPosX + (projY / 2), camPosY + (projY/2), camPosY - (projY / 2.0f));
-
-		camPosX = posAct;
-
-
+	if (pos.x +tileSize < 8 * tileSize) {
+		//float camX = 8 * tileSize;
+		projection = glm::ortho(float(2 * tileSize), float(18 * tileSize), float(16 * tileSize), float(1 * tileSize));
 	}
 
-	else if ((pos.x + tileSize > 129 * tileSize && pos.x + tileSize < 145 * tileSize) || (pos.x + tileSize > 193 * tileSize && pos.x + tileSize < 207 * tileSize)) {
-		float targetY = pos.y;
-		float fixedX, fixedY;
+	else if (pos.x + tileSize > 248 * tileSize) {
+		projection = glm::ortho(float(242 * tileSize), float(258 * tileSize), float(46 * tileSize), float(31 * tileSize));
+	}
 
-		if ((pos.x + tileSize > 129 * tileSize && pos.x + tileSize < 145 * tileSize)) {
-			fixedX = 135.5 * tileSize; // Ajusta aquest valor si cal
+	else if ((pos.x + tileSize > 129 * tileSize && pos.x + tileSize < 145 * tileSize)) {
+		if (pos.y + tileSize < (7.5 +2) * tileSize) {
+			projection = glm::ortho(float(130 * tileSize), float(146 * tileSize), float(16 * tileSize), float(1 * tileSize));
 		}
-		else if (pos.x + tileSize > 193 * tileSize && pos.x + tileSize < 207 * tileSize) {
-			fixedX = 199.5 * tileSize;
+		else if (pos.y + tileSize > (97.5 + 2) * tileSize) {
+			projection = glm::ortho(float(130 * tileSize), float(146 * tileSize), float(106 * tileSize), float(91 * tileSize));
 		}
+		else {
+			float targetY = pos.y;
+			projection = glm::ortho(float(130 * tileSize), float(146 * tileSize), targetY + (float(7.5 * tileSize)), targetY - (float(7.5 * tileSize)));
+		}
+	}
 
-		projection = glm::ortho(fixedX - (projY / 2), fixedX + (projY / 2), (targetY + (projY/2)), targetY - (projY/2));
-
-		camPosY = targetY + viewH / 2.0f;
+	else if (pos.x + tileSize > 193 * tileSize && pos.x + tileSize < 208 * tileSize) {
+		
+		if (pos.y + tileSize < (37.5 + 2) * tileSize) {
+		projection = glm::ortho(float(194 * tileSize), float(209 * tileSize), float(46 * tileSize), float(31 * tileSize));
+		}
+		
+		else if (pos.y + tileSize > (97.5 + 2) * tileSize) {
+			projection = glm::ortho(float(194 * tileSize), float(209 * tileSize), float(106 * tileSize), float(91 * tileSize));
+		}
+		else {
+			float targetY = pos.y;
+			projection = glm::ortho(float(194 * tileSize), float(209 * tileSize), targetY + (float(7.5 * tileSize)), targetY - (float(7.5 * tileSize)));
+		}
 	}
 
 	else {
 		// Centrar el personatge a la pantalla amb 7 tiles a l'esquerra i 7 a la dreta
+		if (pos.x + tileSize < 145 * tileSize) camPosY = (7 + 1.5) * tileSize;
+		else if (pos.x + tileSize < 208 * tileSize) camPosY = (97 + 1.5) * tileSize;
+		else camPosY = (37 + 1.5) * tileSize;
 
-		float targetX = pos.x;
-		//float minX = 0.0f;
-		//float maxX = 256 * tileSize - projY;
-		//targetX = std::max(minX, std::min(targetX, maxX));
-		projection = glm::ortho(targetX - (projY / 2), targetX + (projY / 2), camPosY + projY / 2.0f, camPosY - projY / 2.0f);
+		float targetX = pos.x + (3*tileSize);
+		
+		projection = glm::ortho(targetX - (float(8 * tileSize)), targetX + (float(8 * tileSize)), camPosY + projY / 2.0f, camPosY - projY / 2.0f);
 
 		camPosX = targetX + viewH / 2.0f;
 
-		//projection = glm::ortho(pos.x + tileSize - viewW / 2.0f, pos.x + tileSize + viewW / 2.0f, camPosY + projY / 2.0f, camPosY - projY / 2.0f);
 	}
 	//projection = glm::ortho(pos.y + tileSize - viewH / 2.0f, pos.y + tileSize + viewH / 2.0f, camPosX + projX / 2.0f, camPosX - projX / 2.0f);
 	currentTime = 0.0f;
 }
-*/
+
 
 
 

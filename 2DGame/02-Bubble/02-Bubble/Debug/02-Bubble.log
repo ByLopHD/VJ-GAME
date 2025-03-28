@@ -1,6 +1,6 @@
 ﻿  Scene.cpp
 C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(43,20): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(76,14): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(79,13): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB '' con 'SOIL.lib(image_DXT.obj)' o en ''; se vinculará el objeto sin tener en cuenta información de depuración
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(171,62): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(172,68): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(173,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
   02-Bubble.vcxproj -> C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\Debug\02-Bubble.exe
