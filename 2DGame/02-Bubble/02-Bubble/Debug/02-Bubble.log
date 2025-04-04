@@ -1,6 +1,2 @@
-﻿  Scene.cpp
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(43,20): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(171,62): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(172,68): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(173,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+﻿  BeardEnemy.cpp
   02-Bubble.vcxproj -> C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\Debug\02-Bubble.exe

@@ -34,6 +34,8 @@ public:
 	bool collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) const;
 	bool collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, int *posY) const;
 	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
+
+	glm::vec2 getMinCoords() const;
 	
 private:
 	bool loadLevel(const string &levelFile);
@@ -48,7 +50,7 @@ private:
 	int tileSize, blockSize;
 	Texture tilesheet;
 	Texture background;
-	glm::vec2 tileTexSize;
+	glm::vec2 tileTexSize, minCoords;
 	int *map;
 
 };

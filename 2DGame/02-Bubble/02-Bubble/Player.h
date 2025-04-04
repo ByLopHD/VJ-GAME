@@ -13,9 +13,13 @@ public:
     void setTileMap(TileMap* tileMap);
     void setPosition(const glm::vec2& pos);
 
+    void setOnMovingLog(bool onLog);
+
+    void animacioDamage();
 
 
     glm::ivec2 getPosition() { return posPlayer; }
+    glm::ivec2& getPositionRef();
 
 private:
     bool bJumping, bAttacking, bCrouching;
@@ -24,6 +28,14 @@ private:
     Texture spritesheet;
     Sprite* sprite;
     TileMap* map;
+
+	int state_teletransport = 0;
+
+    bool bOnMovingLog;
+
+    bool bDamaged = false;
+    int damageTimer = 0;
+    bool facingRight = true; // Si vols controlar la direcció visual
 };
 
 #endif // _PLAYER_INCLUDE

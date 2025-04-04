@@ -12,26 +12,38 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="BeardEnemy.h" />
+    <ClInclude Include="DynamicObjects.h" />
+    <ClInclude Include="GreenEnemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="FallingBamboo.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MovingLog.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerHealth.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="SnakeEnemy.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="BeardEnemy.cpp" />
+    <ClCompile Include="DynamicObjects.cpp" />
+    <ClCompile Include="GreenEnemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FallingBamboo.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovingLog.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerHealth.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="SnakeEnemy.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileMap.cpp" />
