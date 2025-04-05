@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿/*
+#pragma once
 #include "Sprite.h"
 #include "TileMap.h"
 
@@ -27,8 +28,10 @@ private:
     float speed = 3.0f;
     bool active = true;
 };
+*/
 
-/*
+
+
 #pragma once
 #include "Sprite.h"
 #include "TileMap.h"
@@ -50,6 +53,11 @@ public:
 	void setPosition(const glm::vec2& pos);
 
 	void setPlayerPosition(const glm::ivec2& pos);
+	bool isActive() const;
+
+	void setActive(bool b);
+
+	void onBlocked();
 
 	glm::ivec2 getPosition() { return posEnemy; }
 
@@ -66,6 +74,9 @@ private:
 	bool directionChanged;
 	bool facingRightBefore;
 	bool facingRight;
+	bool active;
+
+	glm::vec2 velocity = glm::vec2(0.f, 6.f);
+	bool wasBlocked = false;
 
 };
-^*/

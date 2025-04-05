@@ -4,6 +4,9 @@
 #include "Sprite.h"
 #include "TileMap.h"
 
+
+
+
 class Player {
 public:
     void init(const glm::ivec2& tileMapPos, ShaderProgram& shaderProgram);
@@ -17,6 +20,7 @@ public:
 
     void animacioDamage();
 
+    int getCurrentAnimation() const;
 
     glm::ivec2 getPosition() { return posPlayer; }
     glm::ivec2& getPositionRef();

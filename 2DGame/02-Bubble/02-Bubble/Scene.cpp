@@ -26,7 +26,7 @@ Scene::Scene()
 	map = NULL;
 	player = NULL;
 	dynamicObjects = new DynamicObjects();
-	bambooSpawnTimer = 0.f;
+	//bambooSpawnTimer = 0.f;
 	srand(static_cast<unsigned int>(time(0)));
 }
 
@@ -36,10 +36,11 @@ Scene::~Scene()
 		delete map;
 	if (player != NULL)
 		delete player;
+	/*
 	for (auto bamboo : bamboos)
 		delete bamboo;
 	bamboos.clear();
-	
+	*/
 	if (dynamicObjects != NULL)
 		delete dynamicObjects;
 		
@@ -81,12 +82,58 @@ void Scene::init()
 
 void Scene::loadBambooSpawns() {
 	int tileSize = map->getTileSize();
-	bambooSpawnPoints.push_back({ glm::ivec2(20 * tileSize, 2 * tileSize), false });
+
+	BambooSpawnPoint spawn1;
+	spawn1.position = glm::ivec2(69 * tileSize, 0 * tileSize);
+	spawn1.respawnInterval = 1250;
+	bambooSpawnPoints.push_back(spawn1);
+
+	BambooSpawnPoint spawn2;
+	spawn2.position = glm::ivec2(81 * tileSize, 0 * tileSize);
+	spawn2.respawnInterval = 1250;
+	bambooSpawnPoints.push_back(spawn2);
+
+	BambooSpawnPoint spawn3;
+	spawn3.position = glm::ivec2(83 * tileSize, 0 * tileSize);
+	spawn3.respawnInterval = 1000;
+	bambooSpawnPoints.push_back(spawn3);
+
+	BambooSpawnPoint spawn4;
+	spawn4.position = glm::ivec2(88 * tileSize, 0 * tileSize);
+	spawn4.respawnInterval = 1050;
+	bambooSpawnPoints.push_back(spawn4);
+
+	BambooSpawnPoint spawn5;
+	spawn5.position = glm::ivec2(93 * tileSize, 0 * tileSize);
+	spawn5.respawnInterval = 1200;
+	bambooSpawnPoints.push_back(spawn5);
+
+	BambooSpawnPoint spawn6;
+	spawn6.position = glm::ivec2(120 * tileSize, 0 * tileSize);
+	spawn6.respawnInterval = 1150;
+	bambooSpawnPoints.push_back(spawn6);
+
+	BambooSpawnPoint spawn7;
+	spawn7.position = glm::ivec2(123 * tileSize, 0 * tileSize);
+	spawn7.respawnInterval = 1100;
+	bambooSpawnPoints.push_back(spawn7);
+
+	BambooSpawnPoint spawn8;
+	spawn8.position = glm::ivec2(201 * tileSize, 30 * tileSize);
+	spawn8.respawnInterval = 1000;
+	bambooSpawnPoints.push_back(spawn8);
+
+	BambooSpawnPoint spawn9;
+	spawn9.position = glm::ivec2(200 * tileSize, 30 * tileSize);
+	spawn9.respawnInterval = 1000;
+	bambooSpawnPoints.push_back(spawn9);
 }
+
 
 void Scene::loadBeardSpawns() {
 	int tileSize = map->getTileSize();
-	beardSpawnPoints.push_back({ glm::ivec2(20 * tileSize, 2 * tileSize), false });
+	beardSpawnPoints.push_back({ glm::ivec2(110 * tileSize, 7 * tileSize), false });
+	beardSpawnPoints.push_back({ glm::ivec2(140 * tileSize, 99 * tileSize), false });
 
 }
 
@@ -108,16 +155,18 @@ void Scene::loadGreenSpawns() {
 	greenSpawnPoints.push_back({ glm::ivec2(201 * tileSize, 40 * tileSize), false});
 }
 
+
+
 void Scene::checkBambooSpawn() {
 	for (auto& sp : bambooSpawnPoints) {
 		int x = sp.position.x;
 		int y = sp.position.y;
 		bool visible = (right - 2 * tileSize >= x && left - 2 * tileSize <= x &&
 			top - 1 * tileSize <= y && bottom - 1 * tileSize >= y);
-		if (visible && !sp.wasVisibleLastFrame && sp.enemy == nullptr) {
+		if (!sp.disable && visible && !sp.wasVisibleLastFrame && sp.enemy == nullptr) {
 			FallingBamboo* bamboo = new FallingBamboo();
 			bamboo->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
-			bamboo->setPlayerPosition(player->getPosition());
+			bamboo->setPosition(glm::vec2(x, y));
 			bamboo->setTileMap(map);
 			bamboos.push_back(bamboo);
 			sp.enemy = bamboo;
@@ -125,6 +174,7 @@ void Scene::checkBambooSpawn() {
 		sp.wasVisibleLastFrame = visible;
 	}
 }
+
 
 void Scene::checkBeardSpawn() {
 	for (auto& sp : beardSpawnPoints) {
@@ -193,20 +243,6 @@ void Scene::checkGreenSpawn() {
 }
 
 
-void Scene::spawnBamboo()
-{
-	glm::vec2 offset = map->getMinCoords();
-	int spawnXtile = 65 + rand() % 61;
-	int spawnX = offset.x + spawnXtile * map->getTileSize();
-	int spawnY = offset.y;
-
-	FallingBamboo* bamboo = new FallingBamboo();
-	bamboo->init(glm::ivec2(spawnX, spawnY), texProgram);
-	bamboo->setTileMap(map);
-	bamboos.push_back(bamboo);
-}
-
-
 void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
@@ -227,6 +263,7 @@ void Scene::update(int deltaTime)
 	checkGreenSpawn();
 	checkSnakeSpawn();
 	checkBeardSpawn();
+	checkBambooSpawn();
 
 	for (int i = 0; i < playerHealth.getMaxHearts(); ++i) {
 		glm::vec2 heartPos(left + 8, top + 8 + i * 12); // espaiat vertical de 12
@@ -237,20 +274,43 @@ void Scene::update(int deltaTime)
 
 	glm::vec2 ppos = player->getPosition();
 
+	// 🟢 Spawn bamboos segons el timer
+	for (auto& sp : bambooSpawnPoints) {
+		if (sp.enemy == nullptr && sp.timer >= 0.f) {
+			sp.timer += deltaTime;
+			if (sp.timer >= sp.respawnInterval) {
+				FallingBamboo* b = new FallingBamboo();
+				b->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
+				b->setTileMap(map);
+				b->setPosition(glm::vec2(static_cast<float>(sp.position.x), static_cast<float>(sp.position.y)));
+
+				bamboos.push_back(b);
+				sp.enemy = b;
+				sp.timer = 0.0f;
+			}
+		}
+	}
+
+	// Iterar sobre bamboos actius
 	for (int i = 0; i < bamboos.size(); ) {
 		FallingBamboo* b = bamboos[i];
+		if (b == nullptr) {
+			++i;
+			continue;
+		}
 		glm::ivec2 posen = b->getPosition();
 		bool isVisible = (right - 2 * tileSize >= posen.x && left - 3 * tileSize <= posen.x &&
 			top - 2 * tileSize <= posen.y && bottom - 2 * tileSize >= posen.y);
+
 		if (!isVisible) {
-			for (auto& sp : bambooSpawnPoints) {
-				if (sp.enemy == b)
-					sp.enemy = nullptr;
-			}
+			for (auto& sp : bambooSpawnPoints)
+				if (sp.enemy == b) sp.enemy = nullptr;
+
 			delete b;
 			bamboos.erase(bamboos.begin() + i);
 		}
 		else {
+			b->setPlayerPosition(player->getPosition());
 			b->update(deltaTime);
 			++i;
 		}
@@ -270,6 +330,7 @@ void Scene::update(int deltaTime)
 			beardEnemies.erase(beardEnemies.begin() + i);
 		}
 		else {
+			b->setPlayerPosition(player->getPosition());
 			b->update(deltaTime);
 			++i;
 		}
@@ -364,8 +425,68 @@ void Scene::update(int deltaTime)
 		}
 	}
 
+	for (auto& enemy : beardEnemies) {
+		glm::ivec2 enemyPos = enemy->getPosition();
+		glm::ivec2 enemySize = glm::ivec2(32, 32);
+		glm::ivec2 enemyOffset = glm::ivec2(0, 0);
+		glm::ivec2 eHitPos = enemyPos + enemyOffset;
+		bool overlapX = pHitPos.x < eHitPos.x + enemySize.x &&
+			pHitPos.x + playerSize.x > eHitPos.x;
+		bool overlapY = pHitPos.y < eHitPos.y + enemySize.y &&
+			pHitPos.y + playerSize.y > eHitPos.y;
+		if (playerInvulTime <= 0 && overlapX && overlapY) {
+			playerHealth.takeDamage(0.25f);
+			playerInvulTime = 2000;
+			player->animacioDamage();
+			break;
+		}
+	}
 
-	
+	for (auto& b : bamboos) {
+		glm::ivec2 bambooPos = b->getPosition();
+		glm::ivec2 bambooSize = glm::ivec2(8, 16);
+		glm::ivec2 bambooOffset = glm::ivec2(0, 0);
+		glm::ivec2 bHitPos = bambooPos + bambooOffset;
+
+		bool overlapX = pHitPos.x < bHitPos.x + bambooSize.x &&
+			pHitPos.x + playerSize.x > bHitPos.x;
+		bool overlapY = pHitPos.y < bHitPos.y + bambooSize.y &&
+			pHitPos.y + playerSize.y > bHitPos.y;
+
+		// Bloqueig amb llança cap amunt
+		int anim = player->getCurrentAnimation();
+		bool isBlockingUp = (anim == 12 || anim == 13);
+
+		if (isBlockingUp && overlapX && overlapY) {
+			// Bloqueja el bamboo
+			b->onBlocked();
+
+			// Troba spawn i elimina
+			for (auto& sp : bambooSpawnPoints) {
+				if (sp.enemy == b) {
+					sp.disable = true;
+					sp.enemy = nullptr;
+					sp.timer = -1.f;  // no respawn
+				}
+			}
+			break;
+		}
+
+		// Si no bloqueja, fa mal
+		if (playerInvulTime <= 0 && overlapX && overlapY && !isBlockingUp) {
+			playerHealth.takeDamage(0.25f);
+			playerInvulTime = 2000;
+			player->animacioDamage();
+			break;
+		}
+	}
+
+
+
+
+
+
+	/*
 	if (ppos.x / tileSize >= 65 && ppos.x / tileSize <= 125 && bambooSpawnTimer > 0.8f) {
 		int numBamboos = 1 + rand() % 2; // Entre 1 y 3 bamb�s
 		for (int i = 0; i < numBamboos; ++i) {
@@ -388,6 +509,7 @@ void Scene::update(int deltaTime)
 		}), bamboos.end());
 
 
+	*/
 	if (playerInvulTime > 0)
 		playerInvulTime -= deltaTime;
 

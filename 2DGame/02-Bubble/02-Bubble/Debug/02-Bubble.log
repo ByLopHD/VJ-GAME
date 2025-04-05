@@ -1,2 +1,16 @@
-﻿  BeardEnemy.cpp
+﻿  Scene.cpp
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.h(64,37): warning C4244: 'return': conversión de 'const float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Scene.cpp")
+  
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.h(65,38): warning C4244: 'return': conversión de 'const float' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Scene.cpp")
+  
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(63,22): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(295,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(319,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(339,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(360,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(596,62): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(597,68): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\02-Bubble\Scene.cpp(598,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
   02-Bubble.vcxproj -> C:\Users\Usuario\Documents\Universitat\Any3\Q2\VJ\VJ-GAME\2DGame\02-Bubble\Debug\02-Bubble.exe

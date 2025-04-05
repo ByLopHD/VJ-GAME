@@ -18,7 +18,7 @@ enum PlayerAnims
     JUMP_LEFT, JUMP_RIGHT, ATTACK_LEFT, ATTACK_RIGHT, CROUCH_ATTACK_LEFT,
     CROUCH_ATTACK_RIGHT, UP_BLOCK_LEFT, UP_BLOCK_RIGHT, UP_ATTACK_LEFT,
     UP_ATTACK_RIGHT, DOWN_ATTACK_LEFT, DOWN_ATTACK_RIGHT, STAND_ATTACK_RIGHT,
-	STAND_ATTACK_LEFT, DAMAGED_LEFT, DAMAGED_RIGHT
+    STAND_ATTACK_LEFT, DAMAGED_LEFT, DAMAGED_RIGHT
 
 };
 
@@ -426,6 +426,10 @@ void Player::animacioDamage() {
         facingRight = true;
 
     sprite->changeAnimation(DAMAGED_RIGHT);
+}
+
+int Player::getCurrentAnimation() const {
+    return sprite->animation();
 }
 
 void Player::render()

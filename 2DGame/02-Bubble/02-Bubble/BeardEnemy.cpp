@@ -1,4 +1,4 @@
-#include <cmath>
+ï»¿#include <cmath>
 #include <iostream>
 #include <GL/glew.h>
 #include "BeardEnemy.h"
@@ -7,14 +7,14 @@
 
 #define JUMP_ANGLE_STEP 4
 #define JUMP_HEIGHT 50.0f
-#define FALL_STEP 4
+#define FALL_STEP 2
 #define ATTACK_DURATION 300
 
 //const glm::ivec2 HITBOX_SIZE = glm::ivec2(15, 32);
 //const glm::ivec2 HITBOX_OFFSET = glm::ivec2(8, 0); //offsetX = (32 - 15) / 2 = 8
 
-const glm::ivec2 HITBOX_SIZE = glm::ivec2(15, 32);
-const glm::ivec2 HITBOX_OFFSET = glm::ivec2(8, 0); // subimos 4px la hitbox
+const glm::ivec2 HITBOX_SIZE = glm::ivec2(32, 32);
+const glm::ivec2 HITBOX_OFFSET = glm::ivec2(0, 0); // subimos 4px la hitbox
 
 
 
@@ -65,14 +65,36 @@ void BeardEnemy::init(const glm::ivec2& position, ShaderProgram& shaderProgram) 
 void BeardEnemy::update(int deltaTime) {
 	sprite->update(deltaTime);
 
-	// Si está en el aire (saltando)
-	if (bJumping) {
+	// Calcular distÃ ncia al jugador
+	int dx = posPlayer.x - posEnemy.x;
+	int dy = posPlayer.y - posEnemy.y;
+	int absDx = std::abs(dx);
+	int absDy = std::abs(dy);
 
+	// NomÃ©s canviem direcciÃ³ si el jugador estÃ  realment separat
+	if (absDx > 10)
+		facingRight = (dx > 0);
+
+	// Si estÃ  molt a prop en X i Y â†’ atac
+	bool closeInX = (absDx < 20);
+	bool closeInY = (absDy < 20);
+
+	if (!bJumping && closeInX && closeInY) {
+		Anim attackAnim = facingRight ? ATACK_RIGHT : ATACK_LEFT;
+		if (sprite->animation() != attackAnim)
+			sprite->changeAnimation(attackAnim);
+		return;
+	}
+
+
+	// Si estÃ  a lâ€™aire â†’ procÃ©s de salt
+	if (bJumping) {
 		jumpAngle += JUMP_ANGLE_STEP;
+
 		if (jumpAngle >= 180) {
 			bJumping = false;
 			posEnemy.y = startY;
-			waitTimer = 500; // Esperar 0.5 segundos antes del siguiente salto
+			//waitTimer = 500;
 		}
 		else {
 			posEnemy.y = int(startY - JUMP_HEIGHT * sin(3.14159f * jumpAngle / 180.f));
@@ -82,61 +104,63 @@ void BeardEnemy::update(int deltaTime) {
 			if (jumpAngle > 90) {
 				if (map->collisionMoveDown(posEnemy + HITBOX_OFFSET, HITBOX_SIZE, &posEnemy.y)) {
 					bJumping = false;
-					waitTimer = 500;
+					//waitTimer = 500;
 					startY = posEnemy.y;
 				}
 			}
 		}
 
-		// Movimiento horizontal automático
-		int dx = facingRight ? 2 : -2;
-		posEnemy.x += dx;
-
+		// DesplaÃ§ament lateral mentre salta
+		int moveX = facingRight ? 2 : -2;
+		posEnemy.x += moveX;
 		if ((facingRight && map->collisionMoveRight(posEnemy + HITBOX_OFFSET, HITBOX_SIZE)) ||
 			(!facingRight && map->collisionMoveLeft(posEnemy + HITBOX_OFFSET, HITBOX_SIZE))) {
-			posEnemy.x -= dx;
-			facingRight = !facingRight; // Cambia de dirección si choca
-
+			posEnemy.x -= moveX;
+			facingRight = !facingRight;
 		}
 
-
-		// Animación de salto
-		if (sprite->animation() != (facingRight ? ATACK_RIGHT : ATACK_LEFT))
-			sprite->changeAnimation(facingRight ? ATACK_RIGHT : ATACK_LEFT);
-
-
+		if (sprite->animation() != (facingRight ? MOVE_RIGHT : MOVE_LEFT))
+			sprite->changeAnimation(facingRight ? MOVE_RIGHT : MOVE_LEFT);
 	}
-
-	// Si está en el suelo
 	else {
+		// Gravetat
 		posEnemy.y += FALL_STEP;
+		bool onGround = map->collisionMoveDown(posEnemy + HITBOX_OFFSET, HITBOX_SIZE, &posEnemy.y);
 
-		if (map->collisionMoveDown(posEnemy + HITBOX_OFFSET, HITBOX_SIZE, &posEnemy.y)) {
+		if (onGround) {
+			// NomÃ©s salta si hi ha una diferÃ¨ncia vertical real
+			bool verticalDistance = (posEnemy.y - posPlayer.y > 20);
+			bool horizontalDistance = absDx < 100;
+			bool isSameLevel = abs(posEnemy.y - posPlayer.y) < 10;
 
-			// Animació de espera segons la direcció anterior
-			if (sprite->animation() != (facingRight ? MOVE_RIGHT : MOVE_LEFT))
-				sprite->changeAnimation(facingRight ? MOVE_RIGHT : MOVE_LEFT);
+			bool shouldJump = verticalDistance && horizontalDistance && !isSameLevel;
 
-			// Direcció cap al jugador (preparant el següent salt)
-			facingRight = (posPlayer.x > posEnemy.x);
-
-			// Espera abans de saltar
-			if (waitTimer > 0) {
-				waitTimer -= deltaTime;
-			}
-			else {
+			if (shouldJump) {
 				bJumping = true;
 				jumpAngle = 0;
 				startY = posEnemy.y;
 			}
+			else {
+				// Caminem cap al jugador
+				int moveX = facingRight ? 2: -2;
+				posEnemy.x += moveX;
+
+				if ((facingRight && map->collisionMoveRight(posEnemy + HITBOX_OFFSET, HITBOX_SIZE)) ||
+					(!facingRight && map->collisionMoveLeft(posEnemy + HITBOX_OFFSET, HITBOX_SIZE))) {
+					posEnemy.x -= moveX;
+					facingRight = !facingRight;
+				}
+
+				if (sprite->animation() != (facingRight ? MOVE_RIGHT : MOVE_LEFT))
+					sprite->changeAnimation(facingRight ? MOVE_RIGHT : MOVE_LEFT);
+			}
 		}
 	}
 
-
-
-	// Actualiza la posición visual
+	// PosiciÃ³ final del sprite
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
+
 
 void BeardEnemy::render()
 {

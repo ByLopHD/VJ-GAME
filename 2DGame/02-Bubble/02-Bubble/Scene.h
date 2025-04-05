@@ -43,6 +43,10 @@ struct BambooSpawnPoint {
 	glm::ivec2 position;
 	FallingBamboo* enemy = nullptr;
 	bool wasVisibleLastFrame = false;
+	float timer = 0.0f;
+	int respawnInterval = 1000;
+	bool disable = false;
+
 };
 
 class Scene
