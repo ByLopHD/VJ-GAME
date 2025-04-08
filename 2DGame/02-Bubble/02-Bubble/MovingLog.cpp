@@ -28,6 +28,7 @@ void MovingLog::setMovementRange(int minY_, int maxY_)
 
 void MovingLog::update(int deltaTime)
 {
+    lastPosition = position;
     if (movingDown)
     {
         position.y += speed;
@@ -59,7 +60,7 @@ bool MovingLog::isPlayerOnTop(const glm::ivec2& playerPos) const
     bool onTop = (
         playerPos.x + 50 > position.x &&
         playerPos.x + 45 < position.x + size.x &&
-        playerBottom >= logTop - 20 &&
+        playerBottom >= logTop - 20 &&  
         playerBottom <= logTop + 20
         );
 
@@ -69,4 +70,7 @@ bool MovingLog::isPlayerOnTop(const glm::ivec2& playerPos) const
 glm::ivec2 MovingLog::getPosition() const
 {
     return position;
+}
+glm::ivec2 MovingLog::getMovementOffset() const {
+    return position - lastPosition;
 }

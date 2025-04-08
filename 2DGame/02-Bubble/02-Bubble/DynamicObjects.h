@@ -9,7 +9,7 @@ class DynamicObjects
 {
 public:
     void init(ShaderProgram& shaderProgram);
-    void update(int deltaTime);
+    void update(int deltaTime, Player& player);
     void render();
 
     void addMovingLog(const glm::ivec2& pos, int minY, int maxY, ShaderProgram& shaderProgram);

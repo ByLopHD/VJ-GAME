@@ -17,6 +17,7 @@ public:
 
     bool isPlayerOnTop(const glm::ivec2& playerPos) const;
     glm::ivec2 getPosition() const;
+    glm::ivec2 MovingLog::getMovementOffset() const;
 
 private:
     glm::ivec2 position;
@@ -24,6 +25,8 @@ private:
     int minY, maxY;
     int speed = 1;
     bool movingDown = true;
+    glm::ivec2 lastPosition;
+
 
     Texture spritesheet;
     Sprite* sprite;

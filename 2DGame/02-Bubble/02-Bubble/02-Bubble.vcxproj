@@ -18,6 +18,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FallingBamboo.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Lanza.h" />
     <ClInclude Include="MovingLog.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerHealth.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FallingBamboo.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Lanza.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovingLog.cpp" />
     <ClCompile Include="Player.cpp" />

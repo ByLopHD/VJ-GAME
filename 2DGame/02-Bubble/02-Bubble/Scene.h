@@ -13,6 +13,7 @@
 #include "BeardEnemy.h"
 #include "MovingLog.h"
 #include "DynamicObjects.h"
+#include "Lanza.h"
 #include <vector>
 
 
@@ -82,6 +83,7 @@ private:
 private:
 	TileMap* map;
 	Player* player;
+	MovingLog* wood;
 
 	std::vector<GreenEnemy*> greenEnemies;
 	std::vector<GreenSpawnPoint> greenSpawnPoints;

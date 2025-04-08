@@ -25,6 +25,7 @@ Scene::Scene()
 {
 	map = NULL;
 	player = NULL;
+	//wood = NULL;
 	dynamicObjects = new DynamicObjects();
 	//bambooSpawnTimer = 0.f;
 	srand(static_cast<unsigned int>(time(0)));
@@ -37,12 +38,16 @@ Scene::~Scene()
 	if (player != NULL)
 		delete player;
 	/*
+	if (wood != NULL)
+		delete wood;
+	
 	for (auto bamboo : bamboos)
 		delete bamboo;
 	bamboos.clear();
 	*/
 	if (dynamicObjects != NULL)
 		delete dynamicObjects;
+		
 		
 }
 
@@ -74,6 +79,20 @@ void Scene::init()
 	loadBeardSpawns();
 	loadBambooSpawns();
 	//spawnGreenEnemy();
+	/*
+	wood->init(glm::ivec2(201 * 16, 49 * 16), texProgram); // posición inicial ejemplo
+	wood->setTileMap(map); // si usás tilemap
+	wood->setMovementRange(49 * 16, 52 * 16);
+	wood->init(glm::ivec2(199 * 16, 46.5 * 16), texProgram); // posición inicial ejemplo
+	wood->setTileMap(map); // si usás tilemap
+	wood->setMovementRange(46.5 * 16, 49 * 16);
+	wood->init(glm::ivec2(204 * 16, 45.5 * 16), texProgram); // posición inicial ejemplo
+	wood->setTileMap(map); // si usás tilemap
+	wood->setMovementRange(45.5 * 16, 48 * 16);
+	wood->init(glm::ivec2(200 * 16, 41 * 16), texProgram); // posición inicial ejemplo
+	wood->setTileMap(map); // si usás tilemap
+	wood->setMovementRange(41 * 16, 45 * 16);
+	*/
 
 	// Marges de pantalla
 	glm::ivec2 heartScreenPos(left + 8, top + 8);  // 8 píxels de marge
@@ -247,14 +266,26 @@ void Scene::update(int deltaTime)
 {
 	currentTime += deltaTime;
 	bambooSpawnTimer += deltaTime / 1000.f;
-
-	
-	dynamicObjects->update(deltaTime);
+	/*
+	wood->update(deltaTime);
+	glm::ivec2 movimientoTronco = wood->getMovementOffset();
+	if (wood->isPlayerOnTop(player->getPosition())) {
+		player->setOnMovingLog(true);
+		player->moveWithPlatform(movimientoTronco);
+	}
+	else {
+		player->setOnMovingLog(false);
+	}
+	*/
+	dynamicObjects->update(deltaTime, *player);
 	glm::ivec2& playerPos = player->getPositionRef();
 	bool onMovingPlatform = dynamicObjects->isOnMovingPlatform(playerPos);
 	if (onMovingPlatform)
 		dynamicObjects->applyPlatformMovement(playerPos);
 	player->setOnMovingLog(onMovingPlatform);
+	
+	
+	
 
 	player->update(deltaTime);
 
@@ -631,6 +662,7 @@ void Scene::render()
 	map->render();
 	dynamicObjects->render();
 	player->render();
+	//wood->render();
 	for (auto& bamboo : bamboos)
 		bamboo->render();
 
