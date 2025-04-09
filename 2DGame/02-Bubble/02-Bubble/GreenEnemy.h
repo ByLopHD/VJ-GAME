@@ -22,6 +22,13 @@ public:
 
 	glm::ivec2 getPosition() { return posEnemy; }
 
+	void takeDamage(float amount);
+	bool isDead() const;
+
+	bool checkCollision(const std::pair<glm::ivec2, glm::ivec2>& a, const std::pair<glm::ivec2, glm::ivec2>& b);
+
+	pair<glm::ivec2, glm::ivec2> getHitbox();
+
 private:
 	bool bJumping;
 	glm::ivec2 tileMapDispl, posEnemy, posPlayer;
@@ -35,5 +42,8 @@ private:
 	bool directionChanged;
 	bool facingRightBefore;
 	bool facingRight;
+
+	float health = 0.5f;
+	bool dead = false;
 
 };

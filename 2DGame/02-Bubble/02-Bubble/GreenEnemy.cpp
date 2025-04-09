@@ -94,6 +94,7 @@ void GreenEnemy::update(int deltaTime) {
 
 		if ((facingRight && map->collisionMoveRight(posEnemy + HITBOX_OFFSET, HITBOX_SIZE)) ||
 			(!facingRight && map->collisionMoveLeft(posEnemy + HITBOX_OFFSET, HITBOX_SIZE))) {
+			
 			posEnemy.x -= dx;
 			facingRight = !facingRight; // Cambia de dirección si choca
 
@@ -157,4 +158,37 @@ void GreenEnemy::setPosition(const glm::vec2& pos)
 void GreenEnemy::setPlayerPosition(const glm::ivec2& pos) {
 	posPlayer = pos;
 }
+
+void GreenEnemy::takeDamage(float amount) {
+	health -= amount;
+	if (health <= 0.f) {
+		dead = true;
+	}
+}
+
+bool GreenEnemy::isDead() const {
+	return dead;
+}
+
+bool GreenEnemy::checkCollision(const std::pair<glm::ivec2, glm::ivec2>& a, const std::pair<glm::ivec2, glm::ivec2>& b) {
+	glm::ivec2 l1 = a.second;
+	glm::ivec2 r1 = l1 + a.first;
+	glm::ivec2 l2 = b.second;
+	glm::ivec2 r2 = l2 + b.first;
+
+	if (r1.x <= l2.x || r2.x <= l1.x) return false;
+	if (r1.y <= l2.y || r2.y <= l1.y) return false;
+	return true;
+}
+
+pair<glm::ivec2, glm::ivec2> GreenEnemy::getHitbox() {
+	glm::ivec2 hitbox;
+	glm::ivec2 offset;
+
+	hitbox = glm::ivec2(16, 32);
+	offset = glm::ivec2(9, 0);
+
+	return { hitbox, posEnemy + offset };
+}
+
 

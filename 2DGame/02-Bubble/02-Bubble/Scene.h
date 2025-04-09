@@ -9,10 +9,16 @@
 #include "FallingBamboo.h"
 #include "GreenEnemy.h"
 #include "PlayerHealth.h"
+#include "BossHealth.h"
+#include "Gui.h"
 #include "SnakeEnemy.h"
 #include "BeardEnemy.h"
 #include "MovingLog.h"
 #include "DynamicObjects.h"
+#include "PowerUp.h"
+#include "Boss.h"
+#include "Leaf.h"
+#include "Lanza.h"
 #include <vector>
 
 
@@ -49,6 +55,21 @@ struct BambooSpawnPoint {
 
 };
 
+struct BossBamboo {
+	glm::ivec2 position;
+	FallingBamboo* bamboo = nullptr;
+	bool blocked = false;
+};
+
+
+struct PowerUpSpawn {
+	glm::ivec2 position;
+	int type;
+	PowerUp* powerup = nullptr;
+	bool wasVisibleLastFrame = false;
+	bool collected = false;
+};
+
 class Scene
 {
 
@@ -60,12 +81,17 @@ public:
 	void update(int deltaTime);
 	void render();
 	void configCam();
-
+	
 	int getCameraLeft() const { return left; }
 	int getCameraRight() const { return right; }
+	void spawnBossBamboo(glm::ivec2 pos);
+
+	void spawnLeaf(const glm::vec2& center, float angleDeg);
+
+	void setBossVisible(bool b);
+
 
 private:
-	void initShaders();
 	void spawnBamboo();
 	void spawnGreenEnemy();
 
@@ -73,16 +99,24 @@ private:
 	void loadSnakeSpawns();
 	void loadBeardSpawns();
 	void loadBambooSpawns();
+	void loadPowerUpSpawns();
+	void loadBoss();
+
 
 	void checkSnakeSpawn();
 	void checkGreenSpawn();
 	void checkBeardSpawn();
 	void checkBambooSpawn();
+	void checkPowerUpSpawns();
+	void checkBossSpawn();
 
 private:
 	TileMap* map;
 	Player* player;
+	Lanza* lanza;
 
+	Boss* boss;
+	
 	std::vector<GreenEnemy*> greenEnemies;
 	std::vector<GreenSpawnPoint> greenSpawnPoints;
 
@@ -95,15 +129,23 @@ private:
 	std::vector<FallingBamboo*> bamboos;
 	std::vector<BambooSpawnPoint> bambooSpawnPoints;
 
+	std::vector<BossBamboo> bossBamboos;
+
+	std::vector<Leaf*> leaves;
+
+	std::vector<PowerUp*> powerUps;
+	std::vector<PowerUpSpawn> powerUpSpawns;
+
 	std::vector<MovingLog*> woods;
 	DynamicObjects* dynamicObjects;
 
 	PlayerHealth playerHealth;
+	BossHealth bossHealth;
+	Gui gui;
 
-	ShaderProgram texProgram;
 	float currentTime;
 	float bambooSpawnTimer;
-	glm::mat4 projection;
+
 
 	Texture fondo;
 	Sprite* liveFondo;
@@ -115,6 +157,13 @@ private:
 
 	int playerInvulTime = 0;  // mil·lisegons d'invulnerabilitat
 
+	bool bossVisible = true;
+
+	bool godMode = false;  // Per activar/desactivar el mode invulnerable
+
+	void initShaders();
+	glm::mat4 projection;
+	ShaderProgram texProgram;
 };
 
 

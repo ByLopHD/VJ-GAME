@@ -161,6 +161,16 @@ void BeardEnemy::update(int deltaTime) {
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posEnemy.x), float(tileMapDispl.y + posEnemy.y)));
 }
 
+void BeardEnemy::takeDamage(float amount) {
+	health -= amount;
+	if (health <= 0.f) {
+		dead = true;
+	}
+}
+
+bool BeardEnemy::isDead() const {
+	return dead;
+}
 
 void BeardEnemy::render()
 {

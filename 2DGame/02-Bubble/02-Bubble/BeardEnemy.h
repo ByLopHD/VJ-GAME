@@ -20,6 +20,9 @@ public:
 
 	void setPlayerPosition(const glm::ivec2& pos);
 
+	void takeDamage(float amount);
+	bool isDead() const;
+
 	glm::ivec2 getPosition() { return posEnemy; }
 
 private:
@@ -36,4 +39,6 @@ private:
 	bool facingRightBefore;
 	bool facingRight;
 
+	float health = 0.5f;
+	bool dead = false;
 };

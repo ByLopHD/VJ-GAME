@@ -23,6 +23,9 @@ public:
 
 	glm::ivec2 getPosition() { return posEnemy; }
 
+	void takeDamage(float amount);
+	bool isDead() const;
+
 	void setSceneReference(Scene* scene);
 
 private:
@@ -41,5 +44,8 @@ private:
 	
 	bool primer = true;
 	Scene* scene = nullptr;
+
+	float health = 0.5f;
+	bool dead = false;
 
 };

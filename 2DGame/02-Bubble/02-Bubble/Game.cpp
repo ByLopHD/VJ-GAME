@@ -25,7 +25,7 @@ void Game::render()
 
 void Game::keyPressed(int key)
 {
-	if(key == GLFW_KEY_ESCAPE) // Escape code
+	if (key == GLFW_KEY_ESCAPE) // Escape code
 		bPlay = false;
 	keys[key] = true;
 }
@@ -51,6 +51,3 @@ bool Game::getKey(int key) const
 {
 	return keys[key];
 }
-
-
-

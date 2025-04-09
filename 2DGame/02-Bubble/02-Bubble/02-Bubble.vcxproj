@@ -13,14 +13,21 @@
   <ItemGroup>
     <ClInclude Include="AnimKeyframes.h" />
     <ClInclude Include="BeardEnemy.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossHealth.h" />
     <ClInclude Include="DynamicObjects.h" />
     <ClInclude Include="GreenEnemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FallingBamboo.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gui.h" />
+    <ClInclude Include="Lanza.h" />
+    <ClInclude Include="Leaf.h" />
     <ClInclude Include="MovingLog.h" />
+    <ClInclude Include="PantallaInicial.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerHealth.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
@@ -31,15 +38,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeardEnemy.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossHealth.cpp" />
     <ClCompile Include="DynamicObjects.cpp" />
     <ClCompile Include="GreenEnemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FallingBamboo.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Lanza.cpp" />
+    <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovingLog.cpp" />
+    <ClCompile Include="PantallaInicial.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerHealth.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />

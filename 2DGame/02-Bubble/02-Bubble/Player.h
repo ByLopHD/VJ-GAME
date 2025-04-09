@@ -1,8 +1,10 @@
-#ifndef _PLAYER_INCLUDE
+ï»¿#ifndef _PLAYER_INCLUDE
 #define _PLAYER_INCLUDE
 
 #include "Sprite.h"
 #include "TileMap.h"
+#include "Lanza.h"
+#include <vector>
 
 
 
@@ -18,12 +20,17 @@ public:
 
     void setOnMovingLog(bool onLog);
 
+    void moveWithPlatform(const glm::ivec2& movement);
+
     void animacioDamage();
 
     int getCurrentAnimation() const;
 
     glm::ivec2 getPosition() { return posPlayer; }
     glm::ivec2& getPositionRef();
+
+
+    Lanza* getLanza() const;
 
 private:
     bool bJumping, bAttacking, bCrouching;
@@ -32,14 +39,18 @@ private:
     Texture spritesheet;
     Sprite* sprite;
     TileMap* map;
-
-	int state_teletransport = 0;
+    ShaderProgram* shaderProgram;
+    int state_teletransport = 0;
+    Lanza* lanza;
+    int currentLanzaAnim;
+    glm::vec2 LanzaOffset = glm::vec2(0.0f);
 
     bool bOnMovingLog;
+    int attackTimer = 0;
 
     bool bDamaged = false;
     int damageTimer = 0;
-    bool facingRight = true; // Si vols controlar la direcció visual
+    bool facingRight = true; // Si vols controlar la direcciï¿½ visual
 };
 
 #endif // _PLAYER_INCLUDE

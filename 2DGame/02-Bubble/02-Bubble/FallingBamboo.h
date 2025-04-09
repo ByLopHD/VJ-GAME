@@ -1,38 +1,4 @@
-﻿/*
-#pragma once
-#include "Sprite.h"
-#include "TileMap.h"
-
-class FallingBamboo
-{
-public:
-    void init(const glm::ivec2& position, ShaderProgram& shaderProgram);
-    void update(int deltaTime);
-    void render();
-    void setTileMap(TileMap* tileMap);
-    void setPlayerPosition(const glm::ivec2& playerPos);
-
-    bool checkCollisionWithPlayer() const;
-    bool isActive() const;
-
-    glm::ivec2 getPosition() { return posBamboo; }
-
-private:
-    glm::ivec2 posBamboo;
-    glm::ivec2 size = glm::ivec2(16, 32); // tama�o de bamboo
-    glm::ivec2 playerPos;
-    Texture spritesheet;
-    Sprite* sprite;
-    TileMap* map;
-
-    float speed = 3.0f;
-    bool active = true;
-};
-*/
-
-
-
-#pragma once
+﻿#pragma once
 #include "Sprite.h"
 #include "TileMap.h"
 #include "Player.h"
@@ -58,6 +24,7 @@ public:
 	void setActive(bool b);
 
 	void onBlocked();
+	bool isBlocked();
 
 	glm::ivec2 getPosition() { return posEnemy; }
 
@@ -76,7 +43,7 @@ private:
 	bool facingRight;
 	bool active;
 
-	glm::vec2 velocity = glm::vec2(0.f, 6.f);
+	glm::vec2 velocity = glm::vec2(0.f, 4.f);
 	bool wasBlocked = false;
 
 };
